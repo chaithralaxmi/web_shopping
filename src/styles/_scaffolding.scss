@@ -1,28 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 html {
   font-size: $font-size;
-  font-family: $font-family;
-  background: $background-color;
+  font-family: 'Poppins', sans-serif;
   color: $font-color;
   max-width: $page-width;
   line-height: 1.4;
 }
 
+html::-webkit-scrollbar {
+  display: none;
+}
 body {
   margin: 0;
   width: 100vw;
-}
-
-#root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  align-self: center;
-  height: 100vh;
 }
 
 h1 {
   margin: auto;
   text-align: center;
   max-width: 90vw;
+}
+
+@media screen and (max-width: 800px) {
+  #side-panel-container {
+    position: fixed;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    background-color: $white;
+    color: $primary;
+    box-shadow: -6px 0px 5px #f8eaea;
+  }
+
+  #side-panel-container h4 {
+    margin: 0px;
+  }
+
+  #search div h4 {
+    display: none;
+  }
+
+  #category-display {
+    display: none;
+  }
+  /*   #category :hover #category-display {
+    display: unset;
+  } */
+  #price div ul {
+    display: none;
+  }
+  /* 
+  #price:hover {
+    #price div ul {
+      display: block;
+    }
+  } */
+
+  #prod-container {
+    margin-left: 0px;
+  }
+
+  .side-item {
+    margin: 0px 15px;
+  }
 }

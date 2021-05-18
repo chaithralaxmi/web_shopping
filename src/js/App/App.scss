@@ -1,5 +1,40 @@
 @import '../../styles/variables';
 
-#myheader {
-  color: $primary;
+#root {
+  width: fit-content;
+}
+#para1 {
+  color: $font-color;
+}
+
+#navbar {
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: $primary;
+  box-shadow: 0px 1px 18px black;
+  overflow: hidden;
+}
+
+#logo-img {
+  width: 55px;
+  align-self: center;
+}
+
+#mycart {
+  display: flex;
+  width: 70px;
+  justify-content: center;
+  border-radius: 20px;
+  background-color: lightyellow;
+  margin: 0 20px;
+}
+
+#cart-img {
+  width: 55px;
+  align-self: center;
 }
