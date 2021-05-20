@@ -14,7 +14,7 @@ const category = document.querySelector('#category-display');
 const product = document.querySelector('#prod-container');
 const price = document.querySelector('#price');
 const addToCart = document.querySelector('#add-to-cart');
-
+/* 2  */
 const renderProducts = (products) => {
   category.innerHTML = products
     .map((product) => {
@@ -26,16 +26,14 @@ const renderProducts = (products) => {
     })
     .join('');
   category.addEventListener('click', (event) => {
-    event.preventDefault();
+    event.preventDefault(); //to prevent the default property of <a> tag
 
     if (event.target.id == 'category-select') {
-      if (document.querySelector('#prod-container').length != 0) {
-        /* document.querySelector('#prod-container').innerHTML = ''; */
-
-        const getResult = (items) => {
-          product.innerHTML = items
-            .map((item) => {
-              return `
+      const getResult = (items) => {
+        //3.3 display selected category products inside body
+        product.innerHTML = items
+          .map((item) => {
+            return `
                 <div id="box">
                 <div class="box-item" id="item-img">
                     <img src="${item.image}" style="width:150px;">
@@ -49,40 +47,39 @@ const renderProducts = (products) => {
                 </div>
                 </div>
                   `;
-            })
-            .join('');
-        };
+          })
+          .join('');
+      };
 
-        const a1 = async () => {
-          const response1 = await fetch('https://fakestoreapi.com/products');
-          const result1 = await response1.json();
-          console.log(result1);
+      //3.2 filter the selected category to display
+      const categoryFilter = async () => {
+        const response1 = await fetch('https://fakestoreapi.com/products');
+        const result1 = await response1.json();
+        console.log(result1);
 
-          const selecteditem = event.target.text;
-          localStorage.setItem('category', selecteditem);
+        const selecteditem = event.target.text;
+        localStorage.setItem('category', selecteditem);
 
-          console.log(selecteditem);
-          const filtered = result1.filter(
-            (item) => item.category === selecteditem
-          );
-          console.log(filtered);
-          getResult(filtered);
-        };
-        a1();
-      }
+        console.log(selecteditem);
+        const filtered = result1.filter(
+          (item) => item.category === selecteditem
+        );
+        console.log(filtered);
+        getResult(filtered);
+      };
+      /* 3.1 */
+      categoryFilter();
     }
 
+    /*4.3 displaying the producs based on price after selection of category */
     price.addEventListener('click', (event) => {
       event.preventDefault();
 
       if (event.target.id == 'price-select') {
-        if (document.querySelector('#prod-container').length != 0) {
-          /* document.querySelector('#prod-container').innerHTML = ''; */
-
-          const show = (items) => {
-            product.innerHTML = items
-              .map((item) => {
-                return `
+        const show = (items) => {
+          product.innerHTML = items
+            .map((item) => {
+              return `
                   <div id="box">
                   <div class="box-item" id="item-img">
                       <img src="${item.image}" style="width:150px;">
@@ -96,42 +93,40 @@ const renderProducts = (products) => {
                   </div>
                   </div>
                     `;
-              })
-              .join('');
-          };
+            })
+            .join('');
+        };
+        /*4.2 filtering the previously selected category based on the price selected  */
+        const categoryPricefilter = async () => {
+          const response1 = await fetch('https://fakestoreapi.com/products');
+          const result1 = await response1.json();
+          console.log(result1);
 
-          const d1 = async () => {
-            const response1 = await fetch('https://fakestoreapi.com/products');
-            const result1 = await response1.json();
-            console.log(result1);
+          const selectedPrice = event.target.text;
+          console.log(selectedPrice);
 
-            const selectedPrice = event.target.text;
-            console.log(selectedPrice);
-
-            const localData = localStorage.getItem('category');
-
-            const filtered = result1.filter(
-              (item) =>
-                item.category === localData && item.price < selectedPrice
-            );
-            console.log(filtered);
-            show(filtered);
-          };
-          d1();
-        }
+          const localData = localStorage.getItem('category');
+          //actual filter
+          const filtered = result1.filter(
+            (item) => item.category === localData && item.price < selectedPrice
+          );
+          console.log(filtered);
+          show(filtered);
+        };
+        /* 4.1 */
+        categoryPricefilter();
       }
     });
-  });
+  }); //event listener close
 
   price.addEventListener('click', (event) => {
     event.preventDefault();
 
     if (event.target.id == 'price-select') {
-      if (document.querySelector('#prod-container').length != 0) {
-        const show = (items) => {
-          product.innerHTML = items
-            .map((item) => {
-              return `
+      const show = (items) => {
+        product.innerHTML = items
+          .map((item) => {
+            return `
                 <div id="box">
                 <div class="box-item" id="item-img">
                     <img src="${item.image}" style="width:150px;">
@@ -145,28 +140,28 @@ const renderProducts = (products) => {
                 </div>
                 </div>
                   `;
-            })
-            .join('');
-        };
+          })
+          .join('');
+      };
 
-        const e1 = async () => {
-          const response1 = await fetch('https://fakestoreapi.com/products');
-          const result1 = await response1.json();
-          console.log(result1);
+      const priceFilter = async () => {
+        const response1 = await fetch('https://fakestoreapi.com/products');
+        const result1 = await response1.json();
+        console.log(result1);
 
-          const selectedPrice = event.target.text;
-          console.log(selectedPrice);
+        const selectedPrice = event.target.text;
+        console.log(selectedPrice);
 
-          const filtered = result1.filter((item) => item.price < selectedPrice);
-          console.log(filtered);
-          show(filtered);
-        };
-        e1();
-      }
+        const filtered = result1.filter((item) => item.price < selectedPrice);
+        console.log(filtered);
+        show(filtered);
+      };
+      priceFilter();
     }
   });
 };
 
+/* 1.  initial display with all the products inside prod-container */
 const displayProducts = (items) => {
   product.innerHTML = items
     .map((item) => {
@@ -193,13 +188,12 @@ const fetchProducts = async () => {
   const result = await response.json();
 
   let newArray = [];
-
   // Declare an empty object
   let uniqueObject = {};
 
   // Loop for the array elements
   for (let i in result) {
-    // Extract the title
+    // Extract the category
     let objTitle = result[i]['category'];
 
     // Use the category as the index
@@ -211,9 +205,10 @@ const fetchProducts = async () => {
     newArray.push(uniqueObject[i]);
   }
 
-  // Display the unique objects
-  renderProducts(newArray);
+  /* 1. for displaying all products inside prod-container */
   displayProducts(result);
+  //2. Display the unique objects inside sidepanel
+  renderProducts(newArray);
 };
 
 fetchProducts();

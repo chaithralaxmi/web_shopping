@@ -5,7 +5,6 @@ class SidePanel {
 
   //Side panel elements
   sidePanelEl = document.createElement('div');
-  /*   headingEl = document.createElement('h2'); */
   categoryEl = document.createElement('div');
   categoryDisplayEl = document.createElement('div');
   priceEl = document.createElement('div');
@@ -26,7 +25,6 @@ class SidePanel {
     //Side panel elements properties
     this.bodyEl.setAttribute('id', 'body');
     this.sidePanelEl.setAttribute('id', 'side-panel-container');
-    /*     this.headingEl.setAttribute('id', 'heading'); */
     this.categoryEl.setAttribute('id', 'category');
     this.categoryEl.setAttribute('class', 'side-item');
     this.categoryDisplayEl.setAttribute('id', 'category-display');
@@ -51,7 +49,6 @@ class SidePanel {
   render() {
     //Appending side panel elements to bodyEl
     this.bodyEl.append(this.sidePanelEl);
-    /*     this.sidePanelEl.append(this.headingEl); */
     this.sidePanelEl.append(this.searchEl);
     this.sidePanelEl.append(this.categoryEl);
     this.categoryEl.append(this.categoryDisplayEl);
