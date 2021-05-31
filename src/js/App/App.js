@@ -23,7 +23,7 @@ class App {
     this.mycartEl.setAttribute('id', 'mycart');
     this.logoImg.setAttribute('id', 'logo-img');
     this.cartImg.setAttribute('id', 'cart-img');
-    this.navtextEl.textContent = 'BringMe.com';
+    this.navtextEl.textContent = 'E-Shopping.com';
   }
 
   render() {

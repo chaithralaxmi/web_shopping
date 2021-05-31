@@ -12,7 +12,7 @@
   margin: 10px;
   height: 100%;
   background-color: $white;
-  color: $primary;
+  color: $primary-dark;
   box-shadow: -6px 0px 5px #f8eaea;
 }
 
@@ -41,7 +41,7 @@
 
 .item :hover {
   font-weight: bolder;
-  color: rgba(34, 1, 110, 0.973) !important;
+  color: $primary-dark !important;
 }
 .item {
   margin: 7px 0;
@@ -94,7 +94,7 @@
 
 #box {
   margin: 0px 10px 10px 5px;
-  background-color: white;
+  background-color: $font-color;
   display: flex;
   align-items: center;
   border: 1px solid #e1e5ea;
@@ -102,14 +102,19 @@
 
 .box-item {
   margin: 20px;
-  color: black;
+  color: $secondary;
 }
 
 h3 {
-  color: $primary !important;
+  color: $primary-dark !important;
 }
-
+h6 {
+  font-size: 1rem;
+}
 .box-item .price-tag {
   font-size: larger;
   color: green;
+}
+.box-item #add-to-cart {
+  color: $primary-dark;
 }
